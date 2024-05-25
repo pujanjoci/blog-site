@@ -36,7 +36,7 @@ function Search({ onTagSelect }) {
     };
 
     return (
-        <div className="tag-container flex gap-2 md:gap-4 ml-4 md:ml-8 mt-1 md:mt-6">
+        <div className="tag-container justify-center text-center flex gap-2 md:gap-4 ml-4 md:ml-8 mt-1 md:mt-6">
             {shuffledTags.slice(0, tagsToDisplay).map((item, index) => (
                 <button
                     key={item.id}

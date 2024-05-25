@@ -35,10 +35,9 @@ const Blog = ({ selectedTag = 'All', excludeBlogId }) => {
     });
 
     return (
-        <div className="box-shadow rounded-lg p-1 mx-auto w-full md:w-[90%]">
-            <h1 className="text-2xl font-bold mb-4">My Blogs</h1>
+        <div className="box-shadow rounded-lg p-1 mx-auto w-full md:w-[90%] mt-2">
             {filteredBlogs.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 gap-8 p-4">
                     {filteredBlogs.map(blog => (
                         <div key={blog['blog-id']} className="bg-white p-4 rounded-lg shadow-lg">
                             <Link to={`/blog/${blog['blog-id']}`}>
@@ -59,7 +58,7 @@ const Blog = ({ selectedTag = 'All', excludeBlogId }) => {
                     ))}
                 </div>
             ) : (
-                <p className="text-gray-600">No more blogs found for the selected tag.</p>
+                <p className="text-red-500 justify-center text-center mt-8 ">No more blogs found for the selected tag.</p>
             )}
         </div>
     );

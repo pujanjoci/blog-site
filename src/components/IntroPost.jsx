@@ -38,7 +38,7 @@ const IntroPost = ({ selectedTag, onMainBlogId }) => {
     }
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center mt-2">
             <div className="bg-white p-4 rounded shadow-lg w-[90%] md:w-[60%] mt-4" style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
                 <h2 className="text-xl font-semibold mb-2 text-center">{mainBlogPost.title}</h2>
                 <img
