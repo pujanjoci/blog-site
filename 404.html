@@ -1,79 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
-    }
-    .container {
-      max-width: 600px;
-      margin: 100px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .game {
-      font-size: 1.2rem;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .door-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .door {
+            position: relative;
+            width: 150px;
+            height: 300px;
+            background-color: brown;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        .door.open {
+            transform: rotateY(-90deg);
+        }
+
+        .door-1 {
+            background-color: #FF5733;
+            /* Red */
+        }
+
+        .door-2 {
+            background-color: #4CAF50;
+            /* Green */
+        }
+
+        .door-3 {
+            background-color: #3498DB;
+            /* Blue */
+        }
+
+        .door-knob {
+            position: absolute;
+            top: calc(50% - 10px);
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .header-content {
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>404 - Page Not Found</h1>
-    <p>Oops! Looks like you've stumbled into the void.</p>
-    <p>But don't worry, let's play a quick game while you wait for a portal to the correct dimension.</p>
-    <div class="game" id="game">
-      <p>Welcome to the Labyrinth of the Lost!</p>
-      <p>You find yourself in a dark corridor.</p>
-      <p>There are three doors ahead of you: red, blue, and green.</p>
-      <p>Which door do you choose?</p>
-      <button onclick="chooseDoor('red')">Red Door</button>
-      <button onclick="chooseDoor('blue')">Blue Door</button>
-      <button onclick="chooseDoor('green')">Green Door</button>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header-content">
+                <h1 style="color: #333;">404 - Page Not Found</h1>
+                <p style="color: #666;">Oops! Looks like you've stumbled into the void.</p>
+                <p style="color: #666;">But don't worry, let's play a quick game while we figure things out.</p>
+            </div>
+            <div class="game-container">
+                <div class="game" id="game">
+                    <p style="color: #444;">Welcome to the Labyrinth of the Lost!</p>
+                    <p style="color: #444;">You find yourself in a dark corridor.</p>
+                    <p style="color: #444;">There are three doors ahead of you: red, green, and blue.</p>
+                    <p style="color: #444;">Which door do you choose?</p>
+                </div>
+                <p id="result" style="display: none;"></p>
+            </div>
+        </div>
     </div>
-    <p id="result"></p>
-  </div>
-  <script>
-    let timer = 10;
+    <div class="door-container">
+        <div class="door door-1" id="door1">
+            <div class="door-knob"></div>
+        </div>
+        <div class="door door-2" id="door2">
+            <div class="door-knob"></div>
+        </div>
+        <div class="door door-3" id="door3">
+            <div class="door-knob"></div>
+        </div>
+    </div>
+    <script>
+        function chooseDoor(color) {
+            const resultElement = document.getElementById('result');
+            const gameContainer = document.querySelector('.game-container');
+            const doors = document.querySelectorAll('.door');
+            const chosenDoor = document.getElementById(`door${color}`);
 
-    function countdown() {
-      timer--;
-      if (timer > 0) {
-        setTimeout(countdown, 1000);
-      } else {
-        window.location.href = "https://pujanjoci.github.io/blog-site/";
-      }
-    }
+            switch (color) {
+                case 1:
+                    resultElement.innerHTML = "<span style='color: #FF5733;'>You open the red door and are met with a pit of spikes. Unfortunately, this is not the way out.</span>";
+                    break;
+                case 2:
+                    resultElement.innerHTML = "<span style='color: #4CAF50;'>You open the green door and find yourself in a treasure room! Congratulations, you've found the exit!</span>";
+                    break;
+                case 3:
+                    resultElement.innerHTML = "<span style='color: #3498DB;'>You open the blue door and are engulfed by darkness. You've been consumed by the labyrinth forever.</span>";
+                    break;
+                default:
+                    resultElement.innerHTML = "<span style='color: #FF5733;'>Invalid choice. Try again.</span>";
+                    break;
+            }
+            doors.forEach(door => door.style.display = 'none');
+            chosenDoor.style.display = 'block';
+            chosenDoor.classList.add('open');
+            gameContainer.style.display = 'none';
+            // Show result in a popup
+            const popup = document.createElement('div');
+            popup.style.position = 'fixed';
+            popup.style.top = '50%';
+            popup.style.left = '50%';
+            popup.style.transform = 'translate(-50%, -50%)';
+            popup.style.backgroundColor = '#fff';
+            popup.style.padding = '20px';
+            popup.style.border = '2px solid #333';
+            popup.style.borderRadius = '8px';
+            popup.innerHTML = resultElement.innerHTML;
+            document.body.appendChild(popup);
+            setTimeout(() => {
+                popup.remove();
+                setTimeout(() => {
+                    window.location.href = "https://pujanjoci.github.io/blog-site/";
+                }, 500); //redirecting after 1s
+            }, 5000); //redirect after seeing the message for 5s
+        }
 
-    countdown();
-
-    function chooseDoor(color) {
-      const resultElement = document.getElementById('result');
-      switch (color) {
-        case 'red':
-          resultElement.textContent = "You open the red door and find yourself in a treasure room! Congratulations, you've found the exit!";
-          break;
-        case 'blue':
-          resultElement.textContent = "You open the blue door and are met with a pit of spikes. Unfortunately, this is not the way out.";
-          break;
-        case 'green':
-          resultElement.textContent = "You open the green door and are engulfed by darkness. You've been consumed by the labyrinth forever.";
-          break;
-        default:
-          resultElement.textContent = "Invalid choice. Try again.";
-          break;
-      }
-      const buttons = document.querySelectorAll('button');
-      buttons.forEach(button => button.disabled = true);
-    }
-  </script>
+        const doors = document.querySelectorAll('.door');
+        doors.forEach((door, index) => {
+            const color = index + 1;
+            door.addEventListener('click', () => {
+                chooseDoor(color);
+            });
+        });
+    </script>
 </body>
+
 </html>
