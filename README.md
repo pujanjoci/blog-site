@@ -48,5 +48,3 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 
 ---
-
-Feel free to customize this template to better suit your project's specifics or add any additional information you think would be useful.
