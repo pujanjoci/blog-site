@@ -1,9 +1,79 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=./blog-site/index.html">
-  </head>
-  <body>
-    Redirecting...
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .game {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>404 - Page Not Found</h1>
+    <p>Oops! Looks like you've stumbled into the void.</p>
+    <p>But don't worry, let's play a quick game while you wait for a portal to the correct dimension.</p>
+    <div class="game" id="game">
+      <p>Welcome to the Labyrinth of the Lost!</p>
+      <p>You find yourself in a dark corridor.</p>
+      <p>There are three doors ahead of you: red, blue, and green.</p>
+      <p>Which door do you choose?</p>
+      <button onclick="chooseDoor('red')">Red Door</button>
+      <button onclick="chooseDoor('blue')">Blue Door</button>
+      <button onclick="chooseDoor('green')">Green Door</button>
+    </div>
+    <p id="result"></p>
+  </div>
+  <script>
+    let timer = 10;
+
+    function countdown() {
+      timer--;
+      if (timer > 0) {
+        setTimeout(countdown, 1000);
+      } else {
+        window.location.href = "https://pujanjoci.github.io/blog-site/";
+      }
+    }
+
+    countdown();
+
+    function chooseDoor(color) {
+      const resultElement = document.getElementById('result');
+      switch (color) {
+        case 'red':
+          resultElement.textContent = "You open the red door and find yourself in a treasure room! Congratulations, you've found the exit!";
+          break;
+        case 'blue':
+          resultElement.textContent = "You open the blue door and are met with a pit of spikes. Unfortunately, this is not the way out.";
+          break;
+        case 'green':
+          resultElement.textContent = "You open the green door and are engulfed by darkness. You've been consumed by the labyrinth forever.";
+          break;
+        default:
+          resultElement.textContent = "Invalid choice. Try again.";
+          break;
+      }
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => button.disabled = true);
+    }
+  </script>
+</body>
 </html>
