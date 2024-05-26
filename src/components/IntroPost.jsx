@@ -8,6 +8,8 @@ import blog104 from '../assets/blog-104.jpg';
 import blog105 from '../assets/blog-105.jpg';
 import blog106 from '../assets/blog-106.jpg';
 import blog107 from '../assets/blog-107.jpg';
+import blog108 from '../assets/blog-108.jpg';
+import blog109 from '../assets/blog-109.jpg';
 
 const blogImages = {
     '101': blog101,
@@ -17,6 +19,8 @@ const blogImages = {
     '105': blog105,
     '106': blog106,
     '107': blog107,
+    '108': blog108,
+    '109': blog109,
 };
 
 const truncateDescription = (description, wordLimit) => {
@@ -49,7 +53,7 @@ const IntroPost = ({ selectedTag, onMainBlogId }) => {
                 <p>{truncateDescription(mainBlogPost.description, 55)}</p>
                 {/* Modify the Link component to navigate to the individual blog post */}
                 <Link to={`/blog/${mainBlogPost['blog-id']}`} className="text-blue-600 mt-2 inline-block">
-                    Read More
+                    Read More...
                 </Link>
             </div>
         </div>

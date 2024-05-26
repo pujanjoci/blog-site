@@ -8,7 +8,7 @@ import Header from './components/Header';
 
 function App() {
     return (
-        <Router basename="/blog-site">
+        <Router basename="/blog-site/">
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />

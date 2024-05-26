@@ -4,11 +4,10 @@ import { useMediaQuery } from 'react-responsive';
 function Search({ onTagSelect }) {
     const tags = [
         { id: 1, name: "All" },
-        { id: 2, name: "React" },
+        { id: 2, name: "Coding" },
         { id: 3, name: "AI" },
         { id: 4, name: "Devices" },
-        { id: 5, name: "Day-to-Day" },
-        { id: 6, name: "HTML" }
+        { id: 5, name: "Day-to-Day" }
     ];
 
     const [activeIndex, setActiveIndex] = useState(0);
