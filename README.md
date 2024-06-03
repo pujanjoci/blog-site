@@ -16,12 +16,12 @@ Welcome to the React Blog Site repository! This project is a simple blog site pr
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/react-blog-site.git
+   git clone https://github.com/pujanjoci/react-blog-site.git
    ```
 
 2. **Install Dependencies**:
    ```bash
-   cd react-blog-site
+   cd blog-site
    npm install
    ```
 
