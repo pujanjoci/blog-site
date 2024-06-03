@@ -30,8 +30,8 @@ const truncateDescription = (description, wordLimit) => {
 
 const IntroPost = ({ selectedTag, onMainBlogId }) => {
     const filteredBlogs = selectedTag === 'All' ? blogData.blogs : blogData.blogs.filter(b => b.name === selectedTag);
-    
-    const mainBlogPost = filteredBlogs.sort((a, b) => parseInt(a['blog-id']) - parseInt(b['blog-id']))[0];
+
+    const mainBlogPost = filteredBlogs.sort((a, b) => parseInt(b['blog-id']) - parseInt(a['blog-id']))[0];
 
     if (mainBlogPost) {
         onMainBlogId(mainBlogPost['blog-id']);
@@ -51,7 +51,6 @@ const IntroPost = ({ selectedTag, onMainBlogId }) => {
                     className="aspect-square w-full h-[200px] md:h-[450px] rounded mt-4 mb-4"
                 />
                 <p>{truncateDescription(mainBlogPost.description, 55)}</p>
-                {/* Modify the Link component to navigate to the individual blog post */}
                 <Link to={`/blog/${mainBlogPost['blog-id']}`} className="text-blue-600 mt-2 inline-block">
                     Read More...
                 </Link>
