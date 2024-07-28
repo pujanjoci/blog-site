@@ -1,5 +1,6 @@
-import React from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import blogData from './Blog.json';
 import blog101 from '../assets/blog-101.jpg';
 import blog102 from '../assets/blog-102.jpg';
@@ -23,40 +24,54 @@ const blogImages = {
     '109': blog109,
 };
 
-const truncateDescription = (description, wordLimit) => {
-    const words = description.split(' ');
-    return words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + '...' : description;
+const truncateTitle = (title, wordLimit) => {
+    const words = title.split(' ');
+    return words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + '...' : title;
 };
 
-const IntroPost = ({ selectedTag, onMainBlogId }) => {
-    const filteredBlogs = selectedTag === 'All' ? blogData.blogs : blogData.blogs.filter(b => b.name === selectedTag);
+const IntroPost = ({ selectedTag, onMainBlogIds }) => {
+    const filteredBlogs = useMemo(() => {
+        return selectedTag === 'All' ? blogData.blogs : blogData.blogs.filter(b => b.name === selectedTag);
+    }, [selectedTag]);
 
-    const mainBlogPost = filteredBlogs.sort((a, b) => parseInt(b['blog-id']) - parseInt(a['blog-id']))[0];
+    const mainBlogPosts = useMemo(() => {
+        return filteredBlogs.sort((a, b) => parseInt(b['blog-id']) - parseInt(a['blog-id'])).slice(0, 3);
+    }, [filteredBlogs]);
 
-    if (mainBlogPost) {
-        onMainBlogId(mainBlogPost['blog-id']);
-    }
+    const mainBlogIds = useMemo(() => mainBlogPosts.map(blog => blog['blog-id']), [mainBlogPosts]);
 
-    if (!mainBlogPost) {
+    useEffect(() => {
+        onMainBlogIds(mainBlogIds);
+    }, [mainBlogIds, onMainBlogIds]);
+
+    if (mainBlogPosts.length === 0) {
         return <p className='text-center mt-10'>Topic coming soon.</p>;
     }
 
     return (
         <div className="flex justify-center items-center mt-2">
-            <div className="bg-white p-4 rounded shadow-lg w-[90%] md:w-[60%] mt-4" style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
-                <h2 className="text-xl font-semibold mb-2 text-center">{mainBlogPost.title}</h2>
-                <img
-                    src={blogImages[mainBlogPost['blog-id']]}
-                    alt={mainBlogPost.title}
-                    className="aspect-square w-full h-[200px] md:h-[450px] rounded mt-4 mb-4"
-                />
-                <p>{truncateDescription(mainBlogPost.description, 55)}</p>
-                <Link to={`/blog/${mainBlogPost['blog-id']}`} className="text-blue-600 mt-2 inline-block">
-                    Read More...
-                </Link>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-2 mb-2 gap-4 md:gap-8 px-5 md:px-24">
+                {mainBlogPosts.map(blog => (
+                    <div key={blog['blog-id']} className="bg-white p-4 rounded shadow-lg" style={{ boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+                        <img
+                            src={blogImages[blog['blog-id']]}
+                            alt={blog.title}
+                            className="aspect-square w-full h-[200px] rounded mb-2"
+                        />
+                        <h2 className="text-xl font-semibold mb-2 text-start">{truncateTitle(blog.title, 8)}</h2>
+                        <Link to={`/blog/${blog['blog-id']}`} className="text-blue-600 inline-block">
+                            Read More...
+                        </Link>
+                    </div>
+                ))}
             </div>
         </div>
     );
+};
+
+IntroPost.propTypes = {
+    selectedTag: PropTypes.string.isRequired,
+    onMainBlogIds: PropTypes.func.isRequired,
 };
 
 export default IntroPost;

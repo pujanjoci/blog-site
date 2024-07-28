@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
 import data from '../components/Blog.json'; // Import your JSON data

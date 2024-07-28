@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import 'animate.css'; // Import animate.css
 

@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useMediaQuery } from 'react-responsive';
+import categories from './Categories.json'; // Adjust the path accordingly
 
 function Search({ onTagSelect }) {
-    const tags = [
-        { id: 1, name: "All" },
-        { id: 2, name: "Coding" },
-        { id: 3, name: "AI" },
-        { id: 4, name: "Devices" },
-        { id: 5, name: "Day-to-Day" }
-    ];
+    const tags = categories;
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [shuffledTags, setShuffledTags] = useState([]);
@@ -26,7 +22,7 @@ function Search({ onTagSelect }) {
         const remainingTags = tags.slice(1);
         const shuffled = shuffleArray(remainingTags);
         setShuffledTags([tags[0], ...shuffled]);
-    }, []);
+    }, [tags]); // Include tags in the dependency array
 
     const handleTagClick = (index, tagName) => {
         setActiveIndex(index);
@@ -52,5 +48,9 @@ function Search({ onTagSelect }) {
         </div>
     );
 }
+
+Search.propTypes = {
+    onTagSelect: PropTypes.func.isRequired, // Define prop types
+};
 
 export default Search;

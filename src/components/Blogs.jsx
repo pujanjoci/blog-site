@@ -1,5 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import blogData from './Blog.json';
 import blog101 from '../assets/blog-101.jpg';
 import blog102 from '../assets/blog-102.jpg';
@@ -23,18 +23,16 @@ const blogImages = {
     '109': blog109,
 };
 
-const truncateDescription = (description) => {
-    const words = description.split(' ');
-    if (words.length > 50) {
-        return words.slice(0, 50).join(' ') + '...';
-    }
-    return description;
+
+const truncateTitle = (title, wordLimit) => {
+    const words = title.split(' ');
+    return words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + '...' : title;
 };
 
-const Blog = ({ selectedTag = 'All', excludeBlogId }) => {
+const Blogs = ({ selectedTag = 'All', excludeBlogIds = [] }) => {
     const filteredBlogs = blogData.blogs.filter(blog => {
         const matchesTag = selectedTag === 'All' || blog.name === selectedTag;
-        const isNotExcluded = excludeBlogId ? blog['blog-id'] !== excludeBlogId : true;
+        const isNotExcluded = !excludeBlogIds.includes(blog['blog-id']);
         return matchesTag && isNotExcluded;
     });
 
@@ -43,29 +41,33 @@ const Blog = ({ selectedTag = 'All', excludeBlogId }) => {
             {filteredBlogs.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 gap-8 p-4">
                     {filteredBlogs.map(blog => (
-                        <div key={blog['blog-id']} className="bg-white p-4 rounded-lg shadow-lg">
+                        <div key={blog['blog-id']} className="bg-white p-4 rounded-lg shadow-lg"> 
+                            {blogImages[blog['blog-id']] && (
+                                <img
+                                    src={blogImages[blog['blog-id']]}
+                                    alt={blog.title}
+                                    className="aspect-square w-full h-[200px] rounded mb-2"
+                                />
+                            )}
+                            <h2 className="text-xl font-semibold mb-2 text-start">{truncateTitle(blog.title, 10)}</h2>
                             <Link to={`/blog/${blog['blog-id']}`}>
-                                <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
-                                {blogImages[blog['blog-id']] && (
-                                    <img
-                                        src={blogImages[blog['blog-id']]}
-                                        alt={blog.title}
-                                        className="aspect-square w-full h-[200px] rounded mb-2"
-                                    />
-                                )}
-                                <p className="text-gray-700">{truncateDescription(blog.description)}</p>
-                                <div className="text-blue-600 mt-2 inline-block">
-                                    Read More...
-                                </div>
+                            <div className="text-blue-600 inline-block">
+                                Read More...
+                            </div>
                             </Link>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p className="text-red-500 justify-center text-center mt-8 ">No more blogs found for the selected tag.</p>
+                <p className="text-red-500 justify-center text-center mt-8">No more blogs found for the selected tag.</p>
             )}
         </div>
     );
 };
 
-export default Blog;
+Blogs.propTypes = {
+    selectedTag: PropTypes.string.isRequired,
+    excludeBlogIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default Blogs;
