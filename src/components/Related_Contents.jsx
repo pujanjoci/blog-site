@@ -60,7 +60,7 @@ const RelatedContents = () => {
 
   return (
     <div>
-      <h2 className="text-center font-bold text-lg mb-4">Related Contents</h2>
+      <h2 className="text-center font-bold text-3xl md:text-lg mb-4">Related Contents</h2>
       <ul className="space-y-8">
         {relatedBlogs.length === 0 ? (
           <li>No related content available.</li>
