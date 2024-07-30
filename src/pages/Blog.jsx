@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
+
 import data from '../components/Blog.json'; // Import your JSON data
+import Related from '../components/Related_Contents';
+
 import blog101 from '../assets/blog-101.jpg'; // Import blog images statically
 import blog102 from '../assets/blog-102.jpg';
 import blog103 from '../assets/blog-103.jpg';
@@ -48,7 +51,7 @@ const Blog = () => {
   }
 
   return (
-    <div className="blog-container max-w-3xl mx-auto py-10 px-6 bg-white shadow-lg rounded-sm">
+    <div className="blog-container max-w-4xl mx-auto py-10 px-6 bg-white shadow-lg rounded-sm">
       <h2 className="text-4xl font-bold mb-6 text-gray-900 text-start">{blogPost.title}</h2>
       <p className="text-gray-600 mb-6">
         By <span className="font-semibold text-gray-800">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
@@ -58,13 +61,19 @@ const Blog = () => {
         src={blogImages[blogPost['blog-id']]}
         alt={blogPost.title}
       />
-      <p
-        className="text-xl text-gray-900 mb-8 leading-relaxed"
-        style={{ whiteSpace: 'pre-wrap' }}
-        dangerouslySetInnerHTML={{ __html: transformDescription(blogPost.description) }}
-      />
-      <div className="text-lg text-gray-800 leading-relaxed space-y-4">
-        {/* Render the rest of your blog post content */}
+
+      <div className="grid grid-cols-1 md:grid-cols-[75%_25%] gap-8 md:gap-4">
+        <div>
+          <p
+            className="md:text-lg text-xl text-gray-900 mb-8 leading-relaxed"
+            style={{ whiteSpace: 'pre-wrap' }}
+            dangerouslySetInnerHTML={{ __html: transformDescription(blogPost.description) }}
+          />
+          <div className="text-md text-gray-800 leading-relaxed space-y-4">
+            {/* Render the rest of your blog post content */}
+          </div>
+        </div>
+        <Related />
       </div>
     </div>
   );
