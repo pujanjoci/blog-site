@@ -15,6 +15,8 @@ import blog107 from '../assets/blog-107.jpg';
 import blog108 from '../assets/blog-108.jpg';
 import blog109 from '../assets/blog-109.jpg';
 
+import authorImage from '../assets/Pujan Joshi.jpg'; // Import author's image statically
+
 const blogImages = {
   '101': blog101,
   '102': blog102,
@@ -51,11 +53,18 @@ const Blog = () => {
   }
 
   return (
-    <div className="blog-container max-w-4xl mx-auto py-10 px-6 bg-white shadow-lg rounded-sm">
-      <h2 className="text-4xl font-bold mb-6 text-gray-900 text-start">{blogPost.title}</h2>
-      <p className="text-gray-600 mb-6">
-        By <span className="font-semibold text-gray-800">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
-      </p>
+    <div className="blog-container max-w-4xl mx-auto py-4 px-6 bg-white shadow-lg rounded-sm">
+      <h2 className="text-4xl font-bold mb-4 text-gray-900 text-start">{blogPost.title}</h2>
+      <div className="flex items-center mb-6">
+        <img
+          src={authorImage}
+          alt={blogPost.author}
+          className="rounded-full w-10 h-10 mr-2"
+        />
+        <p className="text-gray-600">
+          By <span className="font-semibold text-gray-800">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
+        </p>
+      </div>
       <img
         className="w-full h-auto mb-6 shadow-md"
         src={blogImages[blogPost['blog-id']]}
