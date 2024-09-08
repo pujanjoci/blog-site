@@ -39,7 +39,7 @@ const Blogs = ({ selectedTag = 'All', excludeBlogIds = [] }) => {
     return (
         <div className="box-shadow rounded-lg p-1 mx-auto w-full md:w-[90%] mt-2">
             {filteredBlogs.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 5xl:grid-cols-6 mb-10 gap-8 p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 5xl:grid-cols-6 mb-10 gap-8 p-4">
                     {filteredBlogs.map(blog => (
                         <div key={blog['blog-id']} className="bg-white p-4 rounded-lg shadow-lg"> 
                             {blogImages[blog['blog-id']] && (
