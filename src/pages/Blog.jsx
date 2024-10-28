@@ -76,11 +76,19 @@ const Blog = () => {
           alt={blogPost.title}
         />
         {blogPost['sub-title'] && (
-          <p className="mt-8 text-gray-600 text-xl font-semibold italic flex justify-center items-center">
+          <div>
+          {/* Desktop version with quotes */}
+          <p className="hidden md:flex mt-8 text-gray-600 text-xl font-semibold italic justify-center items-center">
             <FaQuoteLeft className="text-gray-400" />
             <span className="mx-4">{blogPost['sub-title']}</span>
             <FaQuoteRight className="text-gray-400" />
           </p>
+
+          {/* Mobile version with quotes at the start and end */}
+          <p className="flex md:hidden mt-8 text-gray-600 text-xl font-semibold italic justify-center items-center">
+            "{blogPost['sub-title']}"
+          </p>
+        </div>
         )}
       </div>
 
