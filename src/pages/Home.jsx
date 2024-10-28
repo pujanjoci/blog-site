@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import Search from '../components/Search';
 import IntroPost from '../components/IntroPost';
 import Blogs from '../components/Blogs';
+import Footer from '../components/Footer';
 
 function Home() {
     const [selectedTag, setSelectedTag] = useState('All');
@@ -21,6 +22,7 @@ function Home() {
             <Search onTagSelect={handleTagSelect} />
             <IntroPost selectedTag={selectedTag} onMainBlogIds={handleMainBlogIds} />
             <Blogs selectedTag={selectedTag} excludeBlogIds={mainBlogIds} />
+            <Footer />
         </div>
     );
 }

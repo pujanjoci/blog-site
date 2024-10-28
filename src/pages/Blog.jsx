@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
+import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 import data from '../components/Blog.json'; // Import your JSON data
 import Related from '../components/Related_Contents';
+import Footer from '../components/Footer';
 
 import blog101 from '../assets/blog-101.jpg'; // Import blog images statically
 import blog102 from '../assets/blog-102.jpg';
@@ -53,7 +55,8 @@ const Blog = () => {
   }
 
   return (
-    <div className="blog-container max-w-4xl mx-auto py-4 px-6 bg-white shadow-lg rounded-sm">
+    <div>
+    <div className="blog-container max-w-5xl mb-8 mx-auto py-4 px-6 bg-white shadow-lg rounded-sm">
       <h2 className="text-4xl font-bold mb-4 text-gray-900 text-start">{blogPost.title}</h2>
       <div className="flex items-center mb-6">
         <img
@@ -65,13 +68,24 @@ const Blog = () => {
           By <span className="font-semibold text-gray-800">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
         </p>
       </div>
-      <img
-        className="w-full h-auto mb-6 shadow-md"
-        src={blogImages[blogPost['blog-id']]}
-        alt={blogPost.title}
-      />
 
-      <div className="grid grid-cols-1 md:grid-cols-[75%_25%] gap-8 md:gap-4">
+      <div className="text-center mb-8">
+        <img
+          className="mx-auto w-[70%] h-auto shadow-md"
+          src={blogImages[blogPost['blog-id']]}
+          alt={blogPost.title}
+        />
+        {blogPost['sub-title'] && (
+          <p className="mt-8 text-gray-600 text-xl font-semibold italic flex justify-center items-center">
+            <FaQuoteLeft className="text-gray-400" />
+            <span className="mx-4">{blogPost['sub-title']}</span>
+            <FaQuoteRight className="text-gray-400" />
+          </p>
+        )}
+      </div>
+
+
+      <div className="grid grid-cols-1 md:grid-cols-[80%_20%] gap-8 md:gap-4">
         <div>
           <p
             className="md:text-lg text-xl text-gray-900 mb-8 leading-relaxed"
@@ -84,6 +98,8 @@ const Blog = () => {
         </div>
         <Related />
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };
