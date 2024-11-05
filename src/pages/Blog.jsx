@@ -56,7 +56,7 @@ const Blog = () => {
 
   return (
     <div>
-    <div className="blog-container max-w-5xl mb-8 mx-auto py-4 px-6 bg-white shadow-lg rounded-sm">
+    <div className="blog-container max-w-7xl mb-8 mx-auto py-4 px-6 bg-white shadow-lg rounded-sm">
       <h2 className="text-4xl font-bold mb-4 text-gray-900 text-start">{blogPost.title}</h2>
       <div className="flex items-center mb-6">
         <img
