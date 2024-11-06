@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 function Footer() {
@@ -18,9 +19,10 @@ function Footer() {
         </div>
 
         <div className="flex space-x-4">
-          <a href="/about" className="hover:underline">About Us</a>
-          <a href="/contact" className="hover:underline">Contact</a>
-          <a href="/privacy" className="hover:underline">Privacy Policy</a>
+          {/* Using Link component for internal navigation */}
+          <Link to="/about" className="hover:underline">About Me</Link>
+          <Link to="/contact" className="hover:underline">Contact</Link>
+          <Link to="/privacy" className="hover:underline">Privacy Policy</Link>
         </div>
 
         <p className="text-sm">&copy; 2023 - {new Date().getFullYear()} Pujan-Joshi. All rights reserved.</p>

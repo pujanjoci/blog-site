@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import 'animate.css'; // Import animate.css
 
+import Footer from '../components/Footer';
+
 const ContactForm = () => {
   const [state, handleSubmit] = useForm("mkndyoow");
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -35,7 +37,7 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="md:w-[30%] mt-[-10%] mx-auto p-5 bg-white shadow-md rounded-lg"
+      className="md:w-[50%] max-w-[500px] mx-auto p-5 bg-white shadow-md rounded-lg"
     >
       <h1 className="text-2xl font-semibold text-center mb-4">Contact Form</h1>
 
@@ -101,8 +103,15 @@ const ContactForm = () => {
 
 const Contact = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <ContactForm />
+    <div className="flex flex-col justify-between h-screen">
+      <div className="flex-grow flex justify-center items-center px-4">
+        {/* Form will remain centered with max width */}
+        <div className="w-full">
+          <ContactForm />
+        </div>
+      </div>
+      {/* Footer added here */}
+      <Footer />
     </div>
   );
 };
