@@ -68,7 +68,7 @@ const Blog = () => {
       </div>
 
       <div className="blog-container max-w-7xl mb-8 mx-auto pb-4 px-6 bg-white shadow-lg rounded-sm">
-        <h2 className="text-4xl font-bold mb-4 text-gray-900 text-start">{blogPost.title}</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-4 text-gray-900 text-start">{blogPost.title}</h2>
         <div className="flex items-center mb-6">
           <img
             src={authorImage}
@@ -76,7 +76,7 @@ const Blog = () => {
             className="rounded-full w-10 h-10 mr-2"
           />
           <p className="text-gray-600">
-            By <span className="font-semibold text-gray-800">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
+            By <span className="font-semibold text-gray-800 italic">{blogPost.author}</span> - {new Date(blogPost.date).toLocaleDateString()}
           </p>
         </div>
 
