@@ -23,7 +23,7 @@ function Footer() {
           <a href="/privacy" className="hover:underline">Privacy Policy</a>
         </div>
 
-        <p className="text-sm">&copy; {new Date().getFullYear()} Pujan-Joshi. All rights reserved.</p>
+        <p className="text-sm">&copy; 2023 - {new Date().getFullYear()} Pujan-Joshi. All rights reserved.</p>
       </div>
     </footer>
   );

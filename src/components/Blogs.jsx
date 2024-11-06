@@ -49,7 +49,9 @@ const Blogs = ({ selectedTag = 'All', excludeBlogIds = [] }) => {
                                     className="aspect-square w-full h-[200px] rounded mb-2"
                                 />
                             )}
+                            <Link to={`/blog/${blog['blog-id']}`}>
                             <h2 className="text-xl font-semibold mb-2 text-start">{truncateTitle(blog.title, 10)}</h2>
+                            </Link>
                             <Link to={`/blog/${blog['blog-id']}`}>
                             <div className="text-blue-600 inline-block">
                                 Read More...

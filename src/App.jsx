@@ -4,12 +4,10 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Blog from './pages/Blog';
-import Header from './components/Header';
 
 function App() {
     return (
         <Router basename="/blog-site/">
-            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/contact" element={<Contact />} />

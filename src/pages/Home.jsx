@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
-import Search from '../components/Search';
 import IntroPost from '../components/IntroPost';
 import Blogs from '../components/Blogs';
 import Footer from '../components/Footer';
+import Search from '../components/Search';
 
 function Home() {
     const [selectedTag, setSelectedTag] = useState('All');

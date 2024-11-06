@@ -58,7 +58,9 @@ const IntroPost = ({ selectedTag, onMainBlogIds }) => {
                             alt={blog.title}
                             className="aspect-square w-full h-[200px] rounded mb-2"
                         />
+                        <Link to={`/blog/${blog['blog-id']}`} >
                         <h2 className="text-xl font-semibold mb-2 text-start">{truncateTitle(blog.title, 8)}</h2>
+                        </Link>
                         <Link to={`/blog/${blog['blog-id']}`} className="text-blue-600 inline-block">
                             Read More...
                         </Link>
