@@ -9,7 +9,7 @@ import PrivacyPolicy from './pages/Privacy';
 
 function App() {
     return (
-        <Router basename="/blog-site/">
+        <Router basename="/">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
