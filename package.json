@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:worker": "npm run build && wrangler dev",
+    "deploy:worker":"npm run build && wrangler deploy"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
@@ -23,7 +25,8 @@
     "react-responsive": "^10.0.0",
     "react-router-dom": "^6.23.0",
     "react-type-animation": "^3.2.0",
-    "sweetalert2": "^11.10.8"
+    "sweetalert2": "^11.10.8",
+    "wrangler": "^4.27.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
