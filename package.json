@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "preview:worker": "npm run build && wrangler dev",
-    "deploy:worker":"npm run build && wrangler deploy"
+    "deploy:worker": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@formspree/react": "^2.5.1",
